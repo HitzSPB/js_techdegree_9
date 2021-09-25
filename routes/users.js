@@ -17,6 +17,6 @@ function asyncHandler(cb){
   }
 
 
-  router.get('/api/users', asyncHandler(async (req, res) => {
+  router.get('/users', asyncHandler(async (req, res) => {
     const user = await User.findOne({ where: {}});
     res.render('index', { user, title: 'User'})}));
