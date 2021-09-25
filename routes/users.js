@@ -3,6 +3,7 @@ const router = express.Router();
 const { Op } = require("sequelize");
 const models = require("../models");
 const authenticateUser = require("../middleware/auth-user");
+const bcrypt = require('bcryptjs');
 
 function asyncHandler(cb){
   return async(req, res, next) => {
@@ -29,12 +30,14 @@ function asyncHandler(cb){
 
   router.post("/users", asyncHandler(async (req, res) => {
     try{
+      req.body.password = bcrypt.hashSync(req.body.password);
         await models.User.create(req.body);
         res.status(201).location("/").end();
       }
 
     catch(err)
     {
+      console.log(err);
       res.status(401).json(err.errors.map(err => err.message));
     }
   }
