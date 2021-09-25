@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-
+const bcrypt = require("bcrypt");
 module.exports = (sequelize) => {
     class User extends Sequelize.Model {
     }
@@ -10,16 +10,20 @@ module.exports = (sequelize) => {
                 autoIncrement: true
             },
             firstName: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false,
             },
             lastName: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false,
             },
             emailAddress: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false,
             },
             password: {
-                type: Sequelize.STRING
+                type: Sequelize.STRING,
+                allowNull: false,
             }         
         }, { sequelize });
 
