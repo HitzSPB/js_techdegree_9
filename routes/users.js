@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { Op } = require("sequelize");
 const models = require("../models");
 const authenticateUser = require("../middleware/auth-user");
 const bcrypt = require('bcryptjs');
