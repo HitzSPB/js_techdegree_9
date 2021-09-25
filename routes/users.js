@@ -29,7 +29,7 @@ function asyncHandler(cb){
 
   router.post("/users", asyncHandler(async (req, res) => {
         await models.User.create(req.body);
-        res.status(201).location("/");
+        res.status(201).location("/").end();
       }
     )
   );

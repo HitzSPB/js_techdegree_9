@@ -25,7 +25,7 @@ function asyncHandler(cb){
 
   router.post('/courses', authenticateUser, asyncHandler(async(req, res) => {
         const course = await models.Course.create(req.body);
-        res.status(201).location(`/api/courses/${course.id}`);
+        res.status(201).location(`/api/courses/${course.id}`).end();
 }));
 
   router.get('/courses/:id', asyncHandler(async (req, res) => {
@@ -41,7 +41,7 @@ function asyncHandler(cb){
     if (req.body.title !== "" && req.body.description !== "") {
         if (req.currentUser.id === course.userId) {
                 await course.update(req.body);
-                res.status(204);
+                res.status(204).end();
         } 
         else {
             res.status(403).json("Only users that created the course can edit it");
@@ -57,7 +57,7 @@ router.delete('/courses/:id', authenticateUser, asyncHandler(async(req, res) => 
     
         if (req.currentUser.id === course.userId) {
                 await course.destroy();
-                res.status(204);
+                res.status(204).end();
         } else {
             res.status(403).json("Only users that created the course can delete it");
         }
