@@ -47,6 +47,9 @@ function asyncHandler(cb){
             {
                 model: models.User,
                 as: 'user',
+                attributes: {
+                    exclude: ["createdAt", "updatedAt", "password"],
+                  },
             }
         ]
     })
