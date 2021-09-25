@@ -38,7 +38,7 @@ function asyncHandler(cb){
     catch(err)
     {
       console.log(err);
-      res.status(401).json(err.errors.map(err => err.message));
+      res.status(400).json(err.errors.map(err => err.message));
     }
   }
   ));
