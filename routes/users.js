@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { Op } = require("sequelize");
 const models = require("../models");
+const authenticateUser = require("../middleware/auth-user");
 
 function asyncHandler(cb){
   return async(req, res, next) => {
@@ -17,7 +18,7 @@ function asyncHandler(cb){
 }
 
 
-  router.get('/users', asyncHandler(async (req, res) => {
+  router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
     const user = await models.User.findOne({where: { id: 1},
       attributes: {
         exclude: ["createdAt", "updatedAt", "password"],
@@ -27,12 +28,8 @@ function asyncHandler(cb){
   }));
 
   router.post("/users", asyncHandler(async (req, res) => {
-      try {
         await models.User.create(req.body);
         res.status(201).location("/").end();
-      } catch (err) {
-        console.log(err);
-        }
       }
     )
   );
