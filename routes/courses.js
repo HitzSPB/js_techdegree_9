@@ -51,7 +51,8 @@ function asyncHandler(cb){
                     exclude: ["createdAt", "updatedAt", "password"],
                   },
             }
-        ]
+        ],
+        attributes: { exclude: ["createdAt", "updatedAt"] },
     })
     res.status(200).json(course);  
       }
