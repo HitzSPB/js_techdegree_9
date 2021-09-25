@@ -12,18 +12,41 @@ module.exports = (sequelize) => {
             firstName: {
                 type: Sequelize.STRING,
                 allowNull: false,
+                validate: {
+                    notEmpty: {
+                        msg: 'Enter a name of the user'
+                    }
+                }
             },
             lastName: {
                 type: Sequelize.STRING,
-                allowNull: false,
+                allowNull: false,                validate: {
+                    notEmpty: {
+                        msg: 'Enter a last name of the user.'
+                    }
+                }
             },
             emailAddress: {
                 type: Sequelize.STRING,
                 allowNull: false,
+                validate: {
+                    notEmpty: {
+                        msg: 'Enter a valid email'
+                    }
+                },
+                unique: {
+                    args: true,
+                    msg: 'Email already exist'
+                }
             },
             password: {
                 type: Sequelize.STRING,
                 allowNull: false,
+                validate: {
+                    notEmpty: {
+                        msg: 'You must enter a password'
+                    }
+                },
             }         
         }, { sequelize });
 
