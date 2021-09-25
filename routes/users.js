@@ -19,7 +19,7 @@ function asyncHandler(cb){
 
 
   router.get('/users', authenticateUser, asyncHandler(async (req, res) => {
-    const user = await models.User.findOne({where: { id: 1},
+    const user = await models.User.findOne({where: { id: req.currentUser.id},
       attributes: {
         exclude: ["createdAt", "updatedAt", "password"],
       }});
@@ -29,7 +29,7 @@ function asyncHandler(cb){
 
   router.post("/users", asyncHandler(async (req, res) => {
         await models.User.create(req.body);
-        res.status(201).location("/").end();
+        res.status(201).location("/");
       }
     )
   );

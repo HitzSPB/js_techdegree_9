@@ -4,6 +4,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const users = require('./routes/users');
+const courses = require('./routes/courses');
 const models = require("./models");
 
 // variable to enable global error logging
@@ -15,6 +16,7 @@ const app = express();
 app.use(morgan('dev'));
 app.use(express.json());
 app.use('/api', users);
+app.use('/api', courses);
 
 // Testing DB Connection
 (async () => {
