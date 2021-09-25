@@ -13,6 +13,9 @@ module.exports = (sequelize) => {
                 type: Sequelize.STRING,
                 allowNull: false,
                 validate: {
+                    notNull: {
+                        msg: 'Enter a name of the user'
+                    },
                     notEmpty: {
                         msg: 'Enter a name of the user'
                     }
@@ -20,7 +23,11 @@ module.exports = (sequelize) => {
             },
             lastName: {
                 type: Sequelize.STRING,
-                allowNull: false,                validate: {
+                allowNull: false,                
+                validate: {
+                    notNull: {
+                        msg: 'Enter a last name of the user.'
+                    },
                     notEmpty: {
                         msg: 'Enter a last name of the user.'
                     }
@@ -30,6 +37,9 @@ module.exports = (sequelize) => {
                 type: Sequelize.STRING,
                 allowNull: false,
                 validate: {
+                    notNull: {
+                        msg: 'Enter a valid email'
+                    },
                     notEmpty: {
                         msg: 'Enter a valid email'
                     }
@@ -43,6 +53,9 @@ module.exports = (sequelize) => {
                 type: Sequelize.STRING,
                 allowNull: false,
                 validate: {
+                    notNull: {
+                        msg: 'You must enter a password'
+                    },
                     notEmpty: {
                         msg: 'You must enter a password'
                     }

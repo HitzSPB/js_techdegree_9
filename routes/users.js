@@ -28,10 +28,16 @@ function asyncHandler(cb){
   }));
 
   router.post("/users", asyncHandler(async (req, res) => {
+    try{
         await models.User.create(req.body);
         res.status(201).location("/").end();
       }
-    )
-  );
+
+    catch(err)
+    {
+      res.status(401).json(err.errors.map(err => err.message));
+    }
+  }
+  ));
 
   module.exports = router;

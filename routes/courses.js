@@ -31,8 +31,14 @@ function asyncHandler(cb){
   }));
 
   router.post('/courses', authenticateUser, asyncHandler(async(req, res) => {
+      try{
         const course = await models.Course.create(req.body);
         res.status(201).location(`/api/courses/${course.id}`).end();
+    }
+    catch(err)
+    {
+        res.status(400).json(err.errors.map(err => err.message))
+    }
 }));
 
   router.get('/courses/:id', asyncHandler(async (req, res) => {

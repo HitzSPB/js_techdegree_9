@@ -22,6 +22,7 @@ app.use('/api', courses);
 (async () => {
   try {
     models.sequelize.authenticate();
+    models.sequelize.sync();
     console.log("Testing connection database - Success");
   } catch (err) {
     console.log("Unable to connect to DB", err);
