@@ -46,7 +46,8 @@ function asyncHandler(cb){
 }));
 
   router.get('/courses/:id', asyncHandler(async (req, res) => {
-    const course = await models.Course.findOne({where: { id: req.params.id}},{
+    const course = await models.Course.findOne(
+        {where: { id: req.params.id},        
         include: [
             {
                 model: models.User,
