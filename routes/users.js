@@ -29,6 +29,7 @@ function asyncHandler(cb){
 
   router.post("/users", asyncHandler(async (req, res) => {
     try{
+      // Inspiration from https://www.npmjs.com/package/bcryptjs
       req.body.password = bcrypt.hashSync(req.body.password);
         await models.User.create(req.body);
         res.status(201).location("/").end();

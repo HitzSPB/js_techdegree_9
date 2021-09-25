@@ -1,5 +1,5 @@
+// Inspiration from https://sequelize.org/master/manual/validations-and-constraints.html
 const Sequelize = require('sequelize');
-const bcrypt = require("bcrypt");
 module.exports = (sequelize) => {
     class User extends Sequelize.Model {
     }
