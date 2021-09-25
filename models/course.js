@@ -1,3 +1,4 @@
+// Inspiration from https://sequelize.org/master/manual/validations-and-constraints.html
 const Sequelize = require('sequelize');
 
 module.exports = (sequelize) => {
