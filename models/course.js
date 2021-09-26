@@ -7,6 +7,7 @@ module.exports = (sequelize) => {
         Course.init({
             id: {
                 type: Sequelize.INTEGER,
+                autoIncrement: true,
                 allowNull: false,
                 primaryKey: true,
             },
