@@ -35,8 +35,10 @@ function asyncHandler(cb){
 
   router.post('/courses', authenticateUser, asyncHandler(async(req, res) => {
       try{
-        const course = await models.Course.create(req.body);
-        res.status(201).location(`/api/courses/${course.id}`).end();
+          const courseInfo = req.body;
+          courseInfo.userId = req.currentUser.id
+          const course = await models.Course.create(courseInfo);
+          res.status(201).location(`/api/courses/${course.id}`).end();
     }
     catch(err)
     {
